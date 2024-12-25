@@ -19,11 +19,8 @@ export const getChatCompletion = async (
     headers['api-key'] = apiKey;
 
     const modelmapping: Partial<Record<ModelOptions, string>> = {
-      'gpt-3.5-turbo': 'gpt-35-turbo',
-      'gpt-3.5-turbo-16k': 'gpt-35-turbo-16k',
-      'gpt-3.5-turbo-1106': 'gpt-35-turbo-1106',
-      'gpt-3.5-turbo-0125': 'gpt-35-turbo-0125',
       'gpt-4o-mini': 'gpt-4o-mini',
+      'gpt-4o': 'gpt-4o',
       'o1-mini': 'o1-mini',
     };
 
@@ -31,7 +28,9 @@ export const getChatCompletion = async (
 
     // set api version to 2023-07-01-preview for gpt-4 and gpt-4-32k, otherwise use 2023-03-15-preview
     const apiVersion =
-      model === 'gpt-4' || model === 'gpt-4-32k' || model === 'gpt-4o-mini' || model === 'o1-mini'
+      model === 'gpt-4' || model === 'gpt-4-32k' || 
+      model === 'gpt-4o-mini' || model === 'gpt-4o' || 
+      model === 'o1-mini'
         ? '2023-07-01-preview'
         : '2023-03-15-preview';
 
@@ -77,11 +76,8 @@ export const getChatCompletionStream = async (
     headers['api-key'] = apiKey;
 
     const modelmapping: Partial<Record<ModelOptions, string>> = {
-      'gpt-3.5-turbo': 'gpt-35-turbo',
-      'gpt-3.5-turbo-16k': 'gpt-35-turbo-16k',
-      'gpt-3.5-turbo-1106': 'gpt-35-turbo-1106',
-      'gpt-3.5-turbo-0125': 'gpt-35-turbo-0125',
       'gpt-4o-mini': 'gpt-4o-mini',
+      'gpt-4o': 'gpt-4o',
       'o1-mini': 'o1-mini',
     };
 
@@ -89,7 +85,9 @@ export const getChatCompletionStream = async (
 
     // set api version to 2023-07-01-preview for gpt-4 and gpt-4-32k, otherwise use 2023-03-15-preview
     const apiVersion =
-      model === 'gpt-4' || model === 'gpt-4-32k' || model === 'gpt-4o-mini' || model === 'o1-mini'
+      model === 'gpt-4' || model === 'gpt-4-32k' || 
+      model === 'gpt-4o-mini' || model === 'gpt-4o' || 
+      model === 'o1-mini'
         ? '2023-07-01-preview'
         : '2023-03-15-preview';
     const path = `openai/deployments/${model}/chat/completions?api-version=${apiVersion}`;
