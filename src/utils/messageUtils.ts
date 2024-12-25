@@ -21,7 +21,7 @@ export const getChatGPTEncoding = (
   messages: MessageInterface[],
   model: ModelOptions
 ) => {
-  const isGpt3 = model === 'gpt-3.5-turbo';
+  const isGpt3 = model === 'gpt-4o-mini';
 
   const msgSep = isGpt3 ? '\n' : '';
   const roleSep = isGpt3 ? '\n' : '<|im_sep|>';
@@ -107,6 +107,19 @@ export const updateTotalTokenUsed = (
     completionTokens: completionTokens + newCompletionTokens,
   };
   setTotalTokenUsed(updatedTotalTokenUsed);
+};
+
+export const getTokenCount = (model: ModelOptions) => {
+  switch (model) {
+    case 'gpt-4o':
+      return 128000;
+    case 'gpt-4o-mini':
+      return 128000;
+    case 'o1-mini':
+      return 200000;
+    default:
+      return 128000;  // Default fallback
+  }
 };
 
 export default countTokens;
